@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: UrlShortener
+springdoc:
+  swagger-ui:
+    disable-swagger-default-url: true
+    path: /swaggerDoc
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
