@@ -41,7 +41,7 @@ class UrlShortenerControllerUnitTest {
 
         val request = UrlShortenerRequest(originalUrl)
 
-        mockMvc.perform(post("/v1/url-shortener")
+        mockMvc.perform(post("/shorten")
             .accept(MediaType.APPLICATION_JSON)
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(request)
@@ -58,7 +58,7 @@ class UrlShortenerControllerUnitTest {
         every { urlShortenerHelper.isValidUrl(invalidUrl) } returns false
 
         val request = UrlShortenerRequest(invalidUrl)
-        mockMvc.perform(post("/v1/url-shortener")
+        mockMvc.perform(post("/shorten")
             .accept(MediaType.APPLICATION_JSON)
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(request)
@@ -78,7 +78,7 @@ class UrlShortenerControllerUnitTest {
 
         val request = UrlShortenerRequest(shortenedUrl)
 
-        mockMvc.perform(get("/v1/url-shortener/original")
+        mockMvc.perform(get("/original")
             .accept(MediaType.APPLICATION_JSON)
             .contentType(MediaType.APPLICATION_JSON)
             .queryParam("shortUrl", shortenedUrl))
@@ -96,7 +96,7 @@ class UrlShortenerControllerUnitTest {
 
         val request = UrlShortenerRequest(shortenedUrl)
 
-        mockMvc.perform(get("/v1/url-shortener/original")
+        mockMvc.perform(get("/original")
             .accept(MediaType.APPLICATION_JSON)
             .contentType(MediaType.APPLICATION_JSON)
             .queryParam("shortUrl", shortenedUrl))
@@ -111,7 +111,7 @@ class UrlShortenerControllerUnitTest {
 
         every { urlShortenerService.getOriginalUrl(code) } returns originalUrl
 
-        mockMvc.perform(get("/v1/url-shortener/$code"))
+        mockMvc.perform(get("/$code"))
             .andExpect(status().isFound)
             .andExpect(redirectedUrl(originalUrl))
             .andExpect(header().string("Location", originalUrl))
@@ -123,7 +123,7 @@ class UrlShortenerControllerUnitTest {
 
         every { urlShortenerService.getOriginalUrl(code) } returns null
 
-        mockMvc.perform(get("/v1/url-shortener/$code"))
+        mockMvc.perform(get("/$code"))
             .andExpect(status().isNotFound)
     }
 

@@ -1,5 +1,6 @@
 package origin.url.shortener.controllers
 
+import io.swagger.v3.oas.annotations.tags.Tag
 import jakarta.servlet.http.HttpServletResponse
 import org.springdoc.api.ErrorMessage
 import org.springframework.http.HttpStatusCode
@@ -12,13 +13,13 @@ import origin.url.shortener.model.UrlShortenerResponse
 import origin.url.shortener.service.UrlShortenerService
 
 @RestController
-@RequestMapping("/v1/url-shortener")
+@RequestMapping
 class UrlShortenerController(
     private val urlShortenerService: UrlShortenerService,
     private val urlShortenerHelper: UrlShortenerHelper
 ) {
 
-    @PostMapping
+    @PostMapping("/shorten")
     fun shortenUrl(@RequestBody body: UrlShortenerRequest): ResponseEntity<UrlShortenerResponse> {
         val originalUrl = body.url
         if (!urlShortenerHelper.isValidUrl(originalUrl)) {

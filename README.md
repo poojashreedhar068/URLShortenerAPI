@@ -8,7 +8,7 @@ API Endpoints:
 
 ○ Create ShortURL:
 
-■ POST /v1/url-shortener
+■ POST http://short.ly/shorten
 
 Request body:json
 {
@@ -29,8 +29,8 @@ Response body : json
 
 ○ Retrieve Original URL:
 
-■ GET /v1/url-shortener
-Query Param :: shortURrl = "string"
+■ GET http://short.ly/original
+Query Param :: shortUrl = "string"
 
 Response: HTTP 200 OK
 Response body : json
@@ -45,7 +45,7 @@ Response body : json
 
 ○ Redirect to Original URL from shortURL:
 
-■ GET /v1/url-shortener/{code}
+■ GET http://short.ly/{code}
 
 Path Parameter :: code i.e alphanumeric code of shortened url
 
@@ -81,7 +81,7 @@ Containerization : Docker
 
 ## Swagger Documentation
 
-Swagger Documentation can be viewed on path :: /swaggerDoc 
+Swagger Documentation can be viewed on path :: http://short.ly/swaggerDoc 
 
 
 ## Used By
@@ -94,21 +94,32 @@ This project is used by the following:
 
 ## Deployment
 
-```````To run on Intellij Or IDE```````````
+```````To run on Intellij Or IDE OR Locally```````````
+Step 1 :: Serve Localhost with custom domain
+* For Window:
+  To update the hosts file in Windows, you can follow these steps:
+
+Press the Windows key
+Type Notepad in the search field
+In the search results, right-click Notepad and select Run as - administrator
+Open the hosts file at C:\Windows\System32\Drivers\etc\hosts
+Make the necessary changes to the file
+Select File > Save to save your changes
+127.0.0.1       short.ly
+
+* For Mac:
+Open terminal and run the command below
+
+$ sudo nano /private/etc/hosts
+And update the hosts file, replace the domain name with your domain.
+Save the file and restart the machine.
+
+Try to access the localhost app by your domain, in my case it will be short.ly
+
+http://short.ly
+
 * Run the main class UrlShortenerApplication.kt
 
-
-```````To run on Tomcat```````````
-* Install Required version tomcat on local
-* build the jar file :: mvn clean install
-* Jar would be generated on target folder
-* Place Jar file on Tomcat/WEBAPPS folder
-* Start tomcat using either command or .sh script
-
-
-```Containerization````
-* Generate Docker image using DockerFile provided
-  docker build -t urlShortener:latest .
 
 ## Running Tests
 
@@ -123,5 +134,15 @@ Unit tests can be run by mvn install or mvn test commands
 Performance Test:
 
 Jmeter or any other performance testing tool can be used to perform testing.
+
+
+## Screenshots 
+
+![img_3.png](img_3.png)
+
+![img.png](img.png)
+
+![img_1.png](img_1.png)
+
 
 
