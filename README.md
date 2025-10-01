@@ -8,7 +8,7 @@ API Endpoints:
 
 ○ Create ShortURL:
 
-■ POST http://short.ly/shorten
+■ POST http://short.ly/url/shorten
 
 Request body:json
 {
@@ -138,7 +138,7 @@ Jmeter or any other performance testing tool can be used to perform testing.
 
 ## Screenshots 
 
-![img_3.png](img_3.png)
+![img_2.png](img_2.png)
 
 ![img.png](img.png)
 

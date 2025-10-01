@@ -41,7 +41,7 @@ class UrlShortenerControllerUnitTest {
 
         val request = UrlShortenerRequest(originalUrl)
 
-        mockMvc.perform(post("/shorten")
+        mockMvc.perform(post("/url/shorten")
             .accept(MediaType.APPLICATION_JSON)
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(request)
@@ -58,7 +58,7 @@ class UrlShortenerControllerUnitTest {
         every { urlShortenerHelper.isValidUrl(invalidUrl) } returns false
 
         val request = UrlShortenerRequest(invalidUrl)
-        mockMvc.perform(post("/shorten")
+        mockMvc.perform(post("/url/shorten")
             .accept(MediaType.APPLICATION_JSON)
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(request)

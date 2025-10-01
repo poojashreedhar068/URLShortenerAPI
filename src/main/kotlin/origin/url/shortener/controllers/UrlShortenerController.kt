@@ -19,7 +19,7 @@ class UrlShortenerController(
     private val urlShortenerHelper: UrlShortenerHelper
 ) {
 
-    @PostMapping("/shorten")
+    @PostMapping("/url/shorten")
     fun shortenUrl(@RequestBody body: UrlShortenerRequest): ResponseEntity<UrlShortenerResponse> {
         val originalUrl = body.url
         if (!urlShortenerHelper.isValidUrl(originalUrl)) {
